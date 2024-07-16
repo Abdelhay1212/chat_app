@@ -1,8 +1,9 @@
-from flask import Flask, request
+from flask import Flask
 from config import Config
 from flask_cors import CORS
 from .models.setup_db import init_db
 from .extensions import mongo, jwt, socket
+from flask.helpers import send_from_directory
 
 
 def create_app(test_config=None):

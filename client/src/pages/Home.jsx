@@ -76,8 +76,8 @@ const Home = () => {
                 <IsFriendsProvider>
                   <Contacts />
                   <Conversation />
+                  <ContactSearchAndGrouping />
                 </IsFriendsProvider>
-                <ContactSearchAndGrouping />
               </OpenedChatProvider>
             </RoomProvider>
           </MessagesProvider>
