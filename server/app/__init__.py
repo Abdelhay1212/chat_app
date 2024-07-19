@@ -3,12 +3,11 @@ from config import Config
 from flask_cors import CORS
 from .models.setup_db import init_db
 from .extensions import mongo, jwt, socket
-from flask.helpers import send_from_directory
 
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    CORS(app, supports_credentials=True, origins="http://localhost:5173")
+    CORS(app, supports_credentials=True)
 
     if test_config is None:
         app.config.from_object(Config)

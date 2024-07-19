@@ -1,4 +1,6 @@
 from app.extensions import mongo
+from pymongo import ASCENDING
+from pymongo.operations import IndexModel
 
 
 def init_db():
@@ -102,14 +104,17 @@ def init_db():
 
     if 'users' not in collections:
         db.create_collection('users', validator={'$jsonSchema': user_schema})
-        db.users.create_index({'username': 1, 'email': 1})
+        indexes = [
+        IndexModel([('email', ASCENDING)], name='email_index'),
+        IndexModel([('username', ASCENDING)], name='username_index'),
+        ]
+        db.users.create_indexes(indexes)
 
     if 'messages' not in collections:
         db.create_collection(
             'messages',
             validator={'$jsonSchema': message_schema}
         )
-        db.messages.create_index('')
 
     if 'chats' not in collections:
         db.create_collection('chats', validator={'$jsonSchema': chat_schema})
